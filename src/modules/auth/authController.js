@@ -65,3 +65,21 @@ exports.login = async (req, res, next) => {
     next(err);
   }
 };
+exports.logout = async (req, res, next) => {
+  try {
+    res
+      .cookie("accessToken", "", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 0,
+      })
+      .status(200)
+      .json({
+        success: true,
+        message: "Logout successful",
+      });
+  } catch (error) {
+    next(error);
+  }
+};

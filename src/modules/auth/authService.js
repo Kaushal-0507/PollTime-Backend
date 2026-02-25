@@ -50,7 +50,7 @@ class AuthService {
       });
 
       await sendOTPEmail(email, otp);
-      console.log(newUser);
+
       return {
         message: "OTP sent to email. Please verify to complete registration.",
         requiresVerification: true,

@@ -3,6 +3,7 @@ const authRoutes = require("./modules/auth/authRoutes");
 const errorMiddleware = require("./middlewares/errorMiddleware");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const profileRouter = require("./modules/profile");
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(
 );
 
 app.use("/api/auth", authRoutes);
+app.use("/", profileRouter);
 
 // Error middleware should be last
 app.use(errorMiddleware);
