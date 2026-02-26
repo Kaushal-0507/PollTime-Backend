@@ -2,6 +2,7 @@ const express = require("express");
 const authRoutes = require("./modules/auth/authRoutes");
 const errorMiddleware = require("./middlewares/errorMiddleware");
 const cors = require("cors");
+const pollRoutes = require("./modules/poll/pollRoutes");
 const cookieParser = require("cookie-parser");
 const profileRouter = require("./modules/profile");
 
@@ -18,17 +19,10 @@ app.use(
 );
 
 app.use("/api/auth", authRoutes);
+app.use("/api/poll", pollRoutes);
 app.use("/", profileRouter);
 
 // Error middleware should be last
 app.use(errorMiddleware);
-
-// // 404 handler
-// app.use("*", (req, res) => {
-//   res.status(404).json({
-//     success: false,
-//     message: "Route not found",
-//   });
-// });
 
 module.exports = app;
